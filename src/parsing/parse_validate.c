@@ -44,7 +44,17 @@ static char	*get_next_word(char const **s, char c)
 	return (word);
 }
 
-static void	fill_result(char **result, char const *s, char c)
+static void	free_partial_split(char **result, int used)
+{
+	while (used > 0)
+	{
+		used--;
+		free(result[used]);
+	}
+	free(result);
+}
+
+static int	fill_result(char **result, char const *s, char c)
 {
 	int	i;
 
@@ -57,11 +67,15 @@ static void	fill_result(char **result, char const *s, char c)
 		{
 			result[i] = get_next_word(&s, c);
 			if (!result[i])
-				return ;
+			{
+				free_partial_split(result, i);
+				return (0);
+			}
 			i++;
 		}
 	}
 	result[i] = NULL;
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
@@ -75,6 +89,7 @@ char	**ft_split(char const *s, char c)
 	result = malloc(sizeof(char *) * (words + 1));
 	if (!result)
 		return (NULL);
-	fill_result(result, s, c);
+	if (!fill_result(result, s, c))
+		return (NULL);
 	return (result);
 }

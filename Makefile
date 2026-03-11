@@ -1,38 +1,49 @@
-NAME		=	push_swap
+NAME = push_swap
 
-CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -I./include
-RM			=	rm -f
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+INCLUDES = -Iinclude
 
-SRCS		=	src/push_swap.c \
-				src/parsing/parse_input.c \
-				src/parsing/parse_args.c \
-				src/parsing/parse_utils.c \
-				src/parsing/parse_validate.c \
-				src/error/check_duplicates.c \
-				src/error/check_errors.c \
-				src/error/error.c \
-				src/utils/ft_atoi_safe.c \
-				src/utils/ft_atol.c \
-				src/stack/stack_utils.c \
-				src/stack/stack_utils2.c
+SRC = \
+	push_swap.c \
+	src/algorithms/adaptive_sort.c \
+	src/algorithms/disorder.c \
+	src/algorithms/medium_sort.c \
+	src/algorithms/radix_sort.c \
+	src/algorithms/simple_sort.c \
+	src/error/check_duplicates.c \
+	src/error/check_errors.c \
+	src/error/error.c \
+	src/operations/push.c \
+	src/operations/reverse_rotate.c \
+	src/operations/rotate.c \
+	src/operations/swap.c \
+	src/parsing/parse_args.c \
+	src/parsing/parse_input.c \
+	src/parsing/parse_utils.c \
+	src/parsing/parse_validate.c \
+	src/stack/stack_utils.c \
+	src/stack/stack_utils2.c \
+	src/utils/ft_atoi_safe.c \
+	src/utils/ft_atol.c \
+	src/utils/medium_sort_utils.c
 
-OBJS		=	$(SRCS:.c=.o)
+OBJ = $(SRC:.c=.o)
 
-all:			$(NAME)
+all: $(NAME)
 
-$(NAME):		$(OBJS)
-				$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-%.o:			%.c
-				$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-				$(RM) $(OBJS)
+	rm -f $(OBJ)
 
-fclean:			clean
-				$(RM) $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
-re:				fclean all
+re: fclean all
 
-.PHONY:			all clean fclean re
+.PHONY: all clean fclean re

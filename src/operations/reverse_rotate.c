@@ -1,12 +1,12 @@
 #include "../../include/push_swap.h"
 
-static void	reverse_rotate(t_stack **stack)
+static int	reverse_rotate_stack(t_stack **stack)
 {
 	t_stack	*last;
 	t_stack	*second_last;
 
-	if (!*stack || !(*stack)->next)
-		return ;
+	if (!stack || !*stack || !(*stack)->next)
+		return (0);
 	last = *stack;
 	second_last = NULL;
 	while (last->next)
@@ -17,23 +17,28 @@ static void	reverse_rotate(t_stack **stack)
 	second_last->next = NULL;
 	last->next = *stack;
 	*stack = last;
+	return (1);
 }
 
 void	rra(t_data *data)
 {
-	reverse_rotate(&data->stack_a);
-	write(1, "rra\n", 4);
+	if (reverse_rotate_stack(&data->stack_a))
+		write(1, "rra\n", 4);
 }
 
 void	rrb(t_data *data)
 {
-	reverse_rotate(&data->stack_b);
-	write(1, "rrb\n", 4);
+	if (reverse_rotate_stack(&data->stack_b))
+		write(1, "rrb\n", 4);
 }
 
 void	rrr(t_data *data)
 {
-	reverse_rotate(&data->stack_a);
-	reverse_rotate(&data->stack_b);
-	write(1, "rrr\n", 4);
+	int	a_rotated;
+	int	b_rotated;
+
+	a_rotated = reverse_rotate_stack(&data->stack_a);
+	b_rotated = reverse_rotate_stack(&data->stack_b);
+	if (a_rotated || b_rotated)
+		write(1, "rrr\n", 4);
 }

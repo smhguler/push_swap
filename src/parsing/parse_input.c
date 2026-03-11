@@ -38,11 +38,30 @@ static int	*convert_to_ints(char **args, int size)
 	return (values);
 }
 
+static void	fill_stack_a(t_data *data, int *values, int size)
+{
+	t_stack	*new;
+	int		i;
+
+	i = 0;
+	while (i < size)
+	{
+		new = stack_new(values[i]);
+		if (!new)
+		{
+			stack_clear(&data->stack_a);
+			free(values);
+			error_exit();
+		}
+		stack_add_back(&data->stack_a, new);
+		i++;
+	}
+}
+
 int	parse_arguments(int argc, char **argv, t_data *data)
 {
 	char	**args;
 	int		*values;
-	int		i;
 
 	if (argc < 2)
 		return (0);
@@ -62,12 +81,7 @@ int	parse_arguments(int argc, char **argv, t_data *data)
 		free(values);
 		error_exit();
 	}
-	i = 0;
-	while (i < data->size_a)
-	{
-		stack_add_back(&data->stack_a, stack_new(values[i]));
-		i++;
-	}
+	fill_stack_a(data, values, data->size_a);
 	free_split(args);
 	free(values);
 	return (1);
