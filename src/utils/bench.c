@@ -2,11 +2,11 @@
 
 char	*strategy_name(t_data *data)
 {
-	if (data->used_strategy == SIMPLE)
+	if (data->strategy == SIMPLE)
 		return ("Simple");
-	if (data->used_strategy == MEDIUM)
+	if (data->strategy == MEDIUM)
 		return ("Medium");
-	if (data->used_strategy == COMPLEX)
+	if (data->strategy == COMPLEX)
 		return ("Complex");
 	return ("Adaptive");
 }

@@ -2,7 +2,10 @@
 
 static int find_min_pos(t_stack *stack)
 {
-    int min,minpos,i;
+    int min;
+    int minpos;
+    int i;
+    
     min=stack->value;
     minpos=0;
     i=0;

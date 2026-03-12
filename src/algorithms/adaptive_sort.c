@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../../include/push_swap.h"
 
 void	adaptive_sort(t_data *data)
 {

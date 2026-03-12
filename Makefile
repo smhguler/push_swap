@@ -10,6 +10,7 @@ SRC = \
 	src/algorithms/disorder.c \
 	src/algorithms/medium_sort.c \
 	src/algorithms/radix_sort.c \
+	src/algorithms/run_strategy.c \
 	src/algorithms/simple_sort.c \
 	src/error/check_duplicates.c \
 	src/error/check_errors.c \
@@ -19,14 +20,22 @@ SRC = \
 	src/operations/rotate.c \
 	src/operations/swap.c \
 	src/parsing/parse_args.c \
+	src/parsing/parse_flags.c \
 	src/parsing/parse_input.c \
 	src/parsing/parse_utils.c \
 	src/parsing/parse_validate.c \
 	src/stack/stack_utils.c \
 	src/stack/stack_utils2.c \
+	src/utils/bench.c \
+	src/utils/bench_utils.c \
 	src/utils/ft_atoi_safe.c \
 	src/utils/ft_atol.c \
-	src/utils/medium_sort_utils.c
+	src/utils/ft_putchar_fd.c \
+	src/utils/ft_putnbr_fd.c \
+	src/utils/ft_putstr_fd.c \
+	src/utils/ft_strncmp.c \
+	src/utils/medium_sort_utils.c \
+	src/utils/op_counter.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -35,7 +44,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.c
+%.o: %.c include/push_swap.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:

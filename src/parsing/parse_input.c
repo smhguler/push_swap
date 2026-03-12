@@ -58,14 +58,14 @@ static void	fill_stack_a(t_data *data, int *values, int size)
 	}
 }
 
-int	parse_arguments(int argc, char **argv, t_data *data)
+int	parse_arguments(int argc, char **argv, int start, t_data *data)
 {
 	char	**args;
 	int		*values;
 
 	if (argc < 2)
 		return (0);
-	args = split_all_args(argc, argv);
+	args = split_all_args(argc, argv, start);
 	if (!args)
 		error_exit();
 	data->size_a = count_args(args);

@@ -20,14 +20,13 @@ static int	count_split_words(char **split)
 	return (count);
 }
 
-static int	count_total_args(int argc, char **argv)
-{
+static int	count_total_args(int argc, char **argv, int start)
 	char	**temp;
 	int		total;
 	int		i;
 
 	total = 0;
-	i = 1;
+	i = start;
 	while (i < argc)
 	{
 		temp = ft_split(argv[i], ' ');
@@ -43,7 +42,7 @@ static int	count_total_args(int argc, char **argv)
 static int	copy_split_args(char **result, char **temp, int *k)
 {
 	int	j;
-
+	
 	j = 0;
 	while (temp[j])
 	{
@@ -55,7 +54,7 @@ static int	copy_split_args(char **result, char **temp, int *k)
 	return (1);
 }
 
-char	**split_all_args(int argc, char **argv)
+char  **split_all_args(int argc, char **argv, int start)
 {
 	char	**result;
 	char	**temp;
@@ -63,13 +62,13 @@ char	**split_all_args(int argc, char **argv)
 	int		i;
 	int		k;
 
-	total = count_total_args(argc, argv);
+	total = count_total_args(argc, argv, start);
 	if (total <= 0)
 		return (NULL);
 	result = ft_calloc(total + 1, sizeof(char *));
 	if (!result)
 		return (NULL);
-	i = 1;
+	i = start;
 	k = 0;
 	while (i < argc)
 	{

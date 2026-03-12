@@ -18,13 +18,19 @@ static int	rotate_stack(t_stack **stack)
 void	ra(t_data *data)
 {
 	if (rotate_stack(&data->stack_a))
+	{
 		write(1, "ra\n", 3);
+		count_op(data, "ra");
+	}
 }
 
 void	rb(t_data *data)
 {
 	if (rotate_stack(&data->stack_b))
+	{
 		write(1, "rb\n", 3);
+		count_op(data, "rb");
+	}
 }
 
 void	rr(t_data *data)
@@ -35,5 +41,8 @@ void	rr(t_data *data)
 	a_rotated = rotate_stack(&data->stack_a);
 	b_rotated = rotate_stack(&data->stack_b);
 	if (a_rotated || b_rotated)
+	{
 		write(1, "rr\n", 3);
+		count_op(data, "rr");
+	}
 }

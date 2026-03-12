@@ -1,13 +1,14 @@
-#include "../../include/push_swap.h"
 long	ft_atol(const char *str)
 {
-	int	sign;
+	int		sign;
 	long	result;
-	int	i;
+	int		i;
+	int		digits;
 
 	i = 0;
 	sign = 1;
 	result = 0;
+	digits = 0;
 	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
 		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
 		i++;
@@ -20,6 +21,9 @@ long	ft_atol(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + (str[i] - '0');
+		digits++;
+		if (digits > 18)
+			return (result * sign);
 		i++;
 	}
 	return (result * sign);
