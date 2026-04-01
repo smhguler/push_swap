@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	simple_sort(t_stack *a, t_stack *b)
+void	simple_sort(t_stack *a, t_stack *b, t_counts *c)
 {
 	int		min;
 	t_node	*tmp;
@@ -16,9 +16,9 @@ void	simple_sort(t_stack *a, t_stack *b)
 			tmp = tmp->next;
 		}
 		while (a->top->value != min)
-			ra(a);
-		pb(a, b);
+			ra(a, c);
+		pb(a, b, c);
 	}
 	while (b->size)
-		pa(a, b);
+		pa(a, b, c);
 }

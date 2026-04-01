@@ -1,15 +1,23 @@
 #include "push_swap.h"
 
-void	complex_sort(t_stack *a, t_stack *b)
+static int	get_max_bits(int size)
+{
+	int	max_bits;
+
+	max_bits = 0;
+	while ((size - 1) >> max_bits != 0)
+		max_bits++;
+	return (max_bits);
+}
+
+void	complex_sort(t_stack *a, t_stack *b, t_counts *c)
 {
 	int	i;
-	int	max_bits;
+	int max_bits;
 	int	size;
 
 	size = a->size;
-	max_bits = 0;
-	while ((size >> max_bits) != 0)
-		max_bits++;
+	max_bits = get_max_bits(size);
 	i = 0;
 	while (i < max_bits)
 	{
@@ -17,12 +25,12 @@ void	complex_sort(t_stack *a, t_stack *b)
 		while (size--)
 		{
 			if (((a->top->index >> i) & 1) == 0)
-				pb(a, b);
+				pb(a, b, c);
 			else
-				ra(a);
+				ra(a, c);
 		}
 		while (b->size)
-			pa(a, b);
+			pa(a, b, c);
 		i++;
 	}
 }

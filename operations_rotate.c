@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	ra(t_stack *a)
+void	ra(t_stack *a, t_counts *c)
 {
 	t_node	*first;
 	t_node	*last;
@@ -15,9 +15,11 @@ void	ra(t_stack *a)
 		last = last->next;
 	last->next = first;
 	write(1, "ra\n", 3);
+	c->count_ra++;
+	c->count_total++;
 }
 
-void	rb(t_stack *b)
+void	rb(t_stack *b, t_counts *c)
 {
 	t_node	*first;
 	t_node	*last;
@@ -32,51 +34,15 @@ void	rb(t_stack *b)
 		last = last->next;
 	last->next = first;
 	write(1, "rb\n", 3);
+	c->count_rb++;
+	c->count_total++;
 }
 
-void	rr(t_stack *a, t_stack *b)
+void	rr(t_stack *a, t_stack *b, t_counts *c)
 {
-	ra(a);
-	rb(b);
+	ra(a,c);
+	rb(b,c);
 	write(1, "rr\n", 3);
-}
-
-void	rra(t_stack *a)
-{
-	t_node	*prev;
-	t_node	*last;
-
-	if (!a || a->size < 2)
-		return ;
-	prev = NULL;
-	last = a->top;
-	while (last->next)
-	{
-		prev = last;
-		last = last->next;
-	}
-	prev->next = NULL;
-	last->next = a->top;
-	a->top = last;
-	write(1, "rra\n", 4);
-}
-
-void	rrb(t_stack *b)
-{
-	t_node	*prev;
-	t_node	*last;
-
-	if (!b || b->size < 2)
-		return ;
-	prev = NULL;
-	last = b->top;
-	while (last->next)
-	{
-		prev = last;
-		last = last->next;
-	}
-	prev->next = NULL;
-	last->next = b->top;
-	b->top = last;
-	write(1, "rrb\n", 4);
+	c->count_rr++;
+	c->count_total++;
 }

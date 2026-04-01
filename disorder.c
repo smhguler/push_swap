@@ -24,5 +24,5 @@ double	compute_disorder(t_stack *a)
 	}
 	if (t == 0)
 		return (0);
-	return ((double)m / t);
+	return (((double)m / t));
 }

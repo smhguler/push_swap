@@ -1,34 +1,37 @@
 #include "push_swap.h"
 
-static int	ft_atoi_ps(const char *str)
+static int	parse_token(const char *str, int len)
 {
 	long	res;
-	int		sign;
+	long	limit;
+	int		s;
+	int		i;
 
 	res = 0;
-	sign = 1;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	if (!*str)
+	s = 1;
+	i = 0;
+	if (len <= 0)
 		error_exit();
-	while (*str)
+	if (str[i] == '-' || str[i] == '+')
+		if (str[i++] == '-')
+			s = -1;
+	if (i >= len)
+		error_exit();
+	limit = 2147483647LL + (s == -1);
+	while (i < len)
 	{
-		if (*str < '0' || *str > '9')
+		if (str[i] < '0' || str[i] > '9')
 			error_exit();
-		res = res * 10 + (*str - '0');
-		if (res * sign > 2147483647 || res * sign < -2147483648)
+		if (res > (limit - (str[i] - '0')) / 10)
 			error_exit();
-		str++;
+		res = res * 10 + (str[i++] - '0');
 	}
-	return ((int)(res * sign));
+	return ((int)(res * s));
 }
 
-static void	check_duplicate(t_stack *a, int value)
+static void	add_back(t_stack *a, int value)
 {
+	t_node	*new;
 	t_node	*tmp;
 
 	tmp = a->top;
@@ -38,13 +41,6 @@ static void	check_duplicate(t_stack *a, int value)
 			error_exit();
 		tmp = tmp->next;
 	}
-}
-
-static void	add_back(t_stack *a, int value)
-{
-	t_node	*new;
-	t_node	*tmp;
-
 	new = malloc(sizeof(t_node));
 	if (!new)
 		error_exit();
@@ -62,17 +58,39 @@ static void	add_back(t_stack *a, int value)
 	a->size++;
 }
 
+static void	process_arg(t_stack *a, char *arg)
+{
+	int		len;
+	char	*tok;
+	int		has_token;
+
+	has_token = 0;
+	while (*arg)
+	{
+		while (*arg && (*arg == ' ' || (*arg >= 9 && *arg <= 13)))
+			arg++;
+		if (!*arg)
+			break ;
+		has_token = 1;
+		tok = arg;
+		len = 0;
+		while (arg[len] && !(arg[len] == ' ' || (arg[len] >= 9 && arg[len] <= 13)))
+			len++;
+		add_back(a, parse_token(tok, len));
+		arg += len;
+	}
+	if (!has_token)
+		error_exit();
+}
+
 void	parse(t_stack *a, char **argv, int start)
 {
 	int	i;
-	int	value;
 
 	i = start;
 	while (argv[i])
 	{
-		value = ft_atoi_ps(argv[i]);
-		check_duplicate(a, value);
-		add_back(a, value);
+		process_arg(a, argv[i]);
 		i++;
 	}
 }

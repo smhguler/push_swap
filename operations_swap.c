@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	sa(t_stack *a)
+void	sa(t_stack *a, t_counts *c)
 {
 	t_node	*f;
 	t_node	*s;
@@ -13,9 +13,11 @@ void	sa(t_stack *a)
 	s->next = f;
 	a->top = s;
 	write(1, "sa\n", 3);
+	c->count_sa++;
+	c->count_total++;
 }
 
-void	sb(t_stack *b)
+void	sb(t_stack *b, t_counts *c)
 {
 	t_node	*f;
 	t_node	*s;
@@ -28,11 +30,15 @@ void	sb(t_stack *b)
 	s->next = f;
 	b->top = s;
 	write(1, "sb\n", 3);
+	c->count_sb++;
+	c->count_total++;
 }
 
-void	ss(t_stack *a, t_stack *b)
+void	ss(t_stack *a, t_stack *b, t_counts *c)
 {
-	sa(a);
-	sb(b);
+	sa(a,c);
+	sb(b,c);
 	write(1, "ss\n", 3);
+	c->count_ss++;
+	c->count_total++;
 }
