@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/06 18:20:39 by vaktas            #+#    #+#             */
+/*   Updated: 2026/04/06 19:37:48 by vaktas           ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -36,30 +49,33 @@ typedef struct s_counts
 	int				count_rrr;
 }					t_counts;
 
-/* ================= ERROR ================= */
+typedef struct s_main_vars
+{
+	t_stack			*a;
+	t_stack			*b;
+	t_counts		c;
+	int				i;
+	int				mode;
+	int				bench;
+	double			disorder;
+}					t_main_vars;
 
 void				error_exit(void);
-
-/* ================= FREE ================= */
 
 void				free_stack(t_stack *stack);
 void				reset_counts(t_counts *c);
 
-/* ================= PARSER ================= */
-
 void				parse(t_stack *a, char **argv, int start);
 
-/* ================= INDEX ================= */
-
 void				assign_index(t_stack *a);
-
-/* ================= ALGORITHMS ================= */
 
 void				simple_sort(t_stack *a, t_stack *b, t_counts *c);
 void				medium_sort(t_stack *a, t_stack *b, t_counts *c);
 void				complex_sort(t_stack *a, t_stack *b, t_counts *c);
-
-/* ================= OPERATIONS ================= */
+void				sort_three(t_stack *a, t_counts *c);
+void				sort_five(t_stack *a, t_stack *b, t_counts *c);
+void				move_min_to_top_a(t_stack *a, t_counts *c);
+void				move_max_to_top_b(t_stack *b, t_counts *c);
 
 void				sa(t_stack *a, t_counts *c);
 void				sb(t_stack *b, t_counts *c);
@@ -76,10 +92,19 @@ void				rra(t_stack *a, t_counts *c);
 void				rrb(t_stack *b, t_counts *c);
 void				rrr(t_stack *a, t_stack *b, t_counts *c);
 
-/* ================= UTILS ================= */
-
 double				compute_disorder(t_stack *a);
 void				adaptive_sort(t_stack *a, t_stack *b, t_counts *c);
 void				print_benchmark(t_counts *c, int bench_mode, int mode,
 						double disorder);
+int					ft_printf(const char *format, ...);
+int					ft_putchar(char c);
+int					ft_putstr(char *s);
+int					ft_putnbr(long n);
+int					ft_putfloat(double n, int precision);
+int					ft_format(va_list args, char format);
+int					ft_strcmp(char *s1, char *s2);
+int					strategy_selector(char *arg);
+int					is_sorted(t_stack *a);
+t_stack				*init_stack(void);
+
 #endif

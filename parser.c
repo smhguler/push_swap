@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/06 18:20:31 by vaktas            #+#    #+#             */
+/*   Updated: 2026/04/06 18:24:02 by vaktas           ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static int	parse_token(const char *str, int len)
+static int	ft_atoi(const char *str, int len)
 {
 	long	res;
 	long	limit;
@@ -29,7 +41,7 @@ static int	parse_token(const char *str, int len)
 	return ((int)(res * s));
 }
 
-static void	add_back(t_stack *a, int value)
+static void	add_stack(t_stack *a, int value)
 {
 	t_node	*new;
 	t_node	*tmp;
@@ -61,7 +73,7 @@ static void	add_back(t_stack *a, int value)
 static void	process_arg(t_stack *a, char *arg)
 {
 	int		len;
-	char	*tok;
+	char	*start;
 	int		has_token;
 
 	has_token = 0;
@@ -72,11 +84,12 @@ static void	process_arg(t_stack *a, char *arg)
 		if (!*arg)
 			break ;
 		has_token = 1;
-		tok = arg;
+		start = arg;
 		len = 0;
-		while (arg[len] && !(arg[len] == ' ' || (arg[len] >= 9 && arg[len] <= 13)))
+		while (arg[len] && !(arg[len] == ' ' || (arg[len] >= 9
+					&& arg[len] <= 13)))
 			len++;
-		add_back(a, parse_token(tok, len));
+		add_stack(a, ft_atoi(start, len));
 		arg += len;
 	}
 	if (!has_token)

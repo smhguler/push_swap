@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations_reverse_rotate.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/06 18:20:18 by vaktas            #+#    #+#             */
+/*   Updated: 2026/04/06 18:20:19 by vaktas           ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	rra(t_stack *a, t_counts *c)
@@ -46,8 +58,8 @@ void	rrb(t_stack *b, t_counts *c)
 
 void	rrr(t_stack *a, t_stack *b, t_counts *c)
 {
-	rra(a,c);
-	rrb(b,c);
+	rra(a, c);
+	rrb(b, c);
 	write(1, "rrr\n", 4);
 	c->count_rrr++;
 	c->count_total++;

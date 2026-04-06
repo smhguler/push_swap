@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations_swap.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/06 18:20:26 by vaktas            #+#    #+#             */
+/*   Updated: 2026/04/06 18:24:00 by vaktas           ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sa(t_stack *a, t_counts *c)
@@ -36,8 +48,8 @@ void	sb(t_stack *b, t_counts *c)
 
 void	ss(t_stack *a, t_stack *b, t_counts *c)
 {
-	sa(a,c);
-	sb(b,c);
+	sa(a, c);
+	sb(b, c);
 	write(1, "ss\n", 3);
 	c->count_ss++;
 	c->count_total++;

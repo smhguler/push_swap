@@ -1,28 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   disorder.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/06 18:19:33 by vaktas            #+#    #+#             */
+/*   Updated: 2026/04/06 18:19:34 by vaktas           ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 double	compute_disorder(t_stack *a)
 {
 	t_node	*i;
 	t_node	*j;
-	int		m;
-	int		t;
+	int		mistakes;
+	int		total;
 
-	m = 0;
-	t = 0;
+	mistakes = 0;
+	total = 0;
 	i = a->top;
 	while (i)
 	{
 		j = i->next;
 		while (j)
 		{
-			t++;
+			total++;
 			if (i->value > j->value)
-				m++;
+				mistakes++;
 			j = j->next;
 		}
 		i = i->next;
 	}
-	if (t == 0)
+	if (total == 0)
 		return (0);
-	return (((double)m / t));
+	return (((double)mistakes / total));
 }

@@ -1,26 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   adaptive.c                                         :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 18:19:12 by vaktas            #+#    #+#             */
-/*   Updated: 2026/04/06 18:19:13 by vaktas           ###   ########.tr       */
+/*   Created: 2026/02/01 18:00:36 by vaktas            #+#    #+#             */
+/*   Updated: 2026/04/06 16:57:15 by vaktas           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	adaptive_sort(t_stack *a, t_stack *b, t_counts *c)
+int	ft_printf(const char *format, ...)
 {
-	double	d;
+	va_list	args;
+	int		summation;
 
-	d = compute_disorder(a);
-	if (d < 0.2)
-		simple_sort(a, b, c);
-	else if (d < 0.5)
-		medium_sort(a, b, c);
-	else
-		complex_sort(a, b, c);
+	summation = 0;
+	if (!format)
+		return (-1);
+	va_start(args, format);
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			format++;
+			if (!*format)
+			{
+				va_end(args);
+				return (-1);
+			}
+			summation += ft_format(args, *format);
+		}
+		else
+			summation += ft_putchar(*format);
+		format++;
+	}
+	va_end(args);
+	return (summation);
 }

@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   adaptive.c                                         :+:      :+:    :+:   */
+/*   ft_printf_utils_format.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 18:19:12 by vaktas            #+#    #+#             */
-/*   Updated: 2026/04/06 18:19:13 by vaktas           ###   ########.tr       */
+/*   Created: 2026/02/02 17:12:42 by vaktas            #+#    #+#             */
+/*   Updated: 2026/04/06 18:23:14 by vaktas           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	adaptive_sort(t_stack *a, t_stack *b, t_counts *c)
+int	ft_format(va_list args, char format)
 {
-	double	d;
+	int	count;
 
-	d = compute_disorder(a);
-	if (d < 0.2)
-		simple_sort(a, b, c);
-	else if (d < 0.5)
-		medium_sort(a, b, c);
-	else
-		complex_sort(a, b, c);
+	count = 0;
+	if (format == 'c')
+		count += ft_putchar(va_arg(args, int));
+	else if (format == 's')
+		count += ft_putstr(va_arg(args, char *));
+	else if (format == 'd' || format == 'i')
+		count += ft_putnbr(va_arg(args, int));
+	else if (format == 'f')
+		count += ft_putfloat(va_arg(args, double), 2);
+	else if (format == '%')
+		count += ft_putchar('%');
+	return (count);
 }
