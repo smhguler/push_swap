@@ -6,7 +6,7 @@
 /*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 18:49:06 by vaktas            #+#    #+#             */
-/*   Updated: 2026/04/07 18:26:53 by vaktas           ###   ########.tr       */
+/*   Updated: 2026/04/07 19:43:41 by vaktas           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,59 +15,59 @@
 void	move_min_to_top_a(t_stack *a, t_counts *c)
 {
 	t_node	*tmp;
-	int		min;
+	int		min_idx;
 	int		pos;
 	int		i;
 
 	tmp = a->top;
-	min = tmp->value;
+	min_idx = tmp->index;
 	pos = 0;
 	i = 0;
 	while (tmp)
 	{
-		if (tmp->value < min)
+		if (tmp->index < min_idx)
 		{
-			min = tmp->value;
+			min_idx = tmp->index;
 			pos = i;
 		}
 		tmp = tmp->next;
 		i++;
 	}
 	if (pos <= a->size / 2)
-		while (a->top->value != min)
+		while (a->top->index != min_idx)
 			ra(a, c);
 	else
-		while (a->top->value != min)
+		while (a->top->index != min_idx)
 			rra(a, c);
 }
 
-void    move_max_to_top_b(t_stack *b, t_counts *c)
+void	move_max_to_top_b(t_stack *b, t_counts *c)
 {
-    t_node  *tmp;
-    int     max_idx;
-    int     pos;
-    int     i;
+	t_node	*tmp;
+	int		max_idx;
+	int		pos;
+	int		i;
 
-    tmp = b->top;
-    max_idx = tmp->index;
-    pos = 0;
-    i = 0;
-    while (tmp)
-    {
-        if (tmp->index > max_idx)
-        {
-            max_idx = tmp->index;
-            pos = i;
-        }
-        tmp = tmp->next;
-        i++;
-    }
-    if (pos <= b->size / 2)
-        while (b->top->index != max_idx)
-            rb(b, c);
-    else
-        while (b->top->index != max_idx)
-            rrb(b, c);
+	tmp = b->top;
+	max_idx = tmp->index;
+	pos = 0;
+	i = 0;
+	while (tmp)
+	{
+		if (tmp->index > max_idx)
+		{
+			max_idx = tmp->index;
+			pos = i;
+		}
+		tmp = tmp->next;
+		i++;
+	}
+	if (pos <= b->size / 2)
+		while (b->top->index != max_idx)
+			rb(b, c);
+	else
+		while (b->top->index != max_idx)
+			rrb(b, c);
 }
 
 void	sort_three(t_stack *a, t_counts *c)

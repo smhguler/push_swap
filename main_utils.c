@@ -6,7 +6,7 @@
 /*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 18:19:00 by vaktas            #+#    #+#             */
-/*   Updated: 2026/04/07 18:27:26 by vaktas           ###   ########.tr       */
+/*   Updated: 2026/04/07 18:41:12 by vaktas           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_strcmp(char *s1, char *s2)
 int	strategy_selector(char *arg)
 {
 	if (!arg)
-		return (5);
+		return (4);
 	if (ft_strcmp(arg, "--simple") == 0)
 		return (0);
 	if (ft_strcmp(arg, "--medium") == 0)
@@ -34,9 +34,7 @@ int	strategy_selector(char *arg)
 		return (2);
 	if (ft_strcmp(arg, "--adaptive") == 0)
 		return (3);
-	if (ft_strcmp(arg, "--count-only") == 0)
-		return (4);
-	return (5);
+	return (4);
 }
 
 int	is_sorted(t_stack *a)
@@ -63,4 +61,26 @@ t_stack	*init_stack(void)
 	s->top = NULL;
 	s->size = 0;
 	return (s);
+}
+
+void	assign_index(t_stack *a)
+{
+	t_node	*i;
+	t_node	*j;
+	int		idx;
+
+	i = a->top;
+	while (i)
+	{
+		idx = 0;
+		j = a->top;
+		while (j)
+		{
+			if (j->value < i->value)
+				idx++;
+			j = j->next;
+		}
+		i->index = idx;
+		i = i->next;
+	}
 }
