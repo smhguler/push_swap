@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 18:20:39 by vaktas            #+#    #+#             */
-/*   Updated: 2026/04/06 19:37:48 by vaktas           ###   ########.tr       */
+/*   Created: 2026/03/01 18:20:39 by vaktas            #+#    #+#             */
+/*   Updated: 2026/04/07 18:28:03 by vaktas           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void				medium_sort(t_stack *a, t_stack *b, t_counts *c);
 void				complex_sort(t_stack *a, t_stack *b, t_counts *c);
 void				sort_three(t_stack *a, t_counts *c);
 void				sort_five(t_stack *a, t_stack *b, t_counts *c);
+void				sorting(t_stack *a, t_stack *b, t_counts *c);
 void				move_min_to_top_a(t_stack *a, t_counts *c);
 void				move_max_to_top_b(t_stack *b, t_counts *c);
 
@@ -106,5 +107,6 @@ int					ft_strcmp(char *s1, char *s2);
 int					strategy_selector(char *arg);
 int					is_sorted(t_stack *a);
 t_stack				*init_stack(void);
+void				count_only(t_counts *c);
 
 #endif

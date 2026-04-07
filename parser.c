@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 18:20:31 by vaktas            #+#    #+#             */
-/*   Updated: 2026/04/06 18:24:02 by vaktas           ###   ########.tr       */
+/*   Created: 2026/03/01 18:20:31 by vaktas            #+#    #+#             */
+/*   Updated: 2026/04/07 18:27:56 by vaktas           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	process_arg(t_stack *a, char *arg)
 		while (*arg && (*arg == ' ' || (*arg >= 9 && *arg <= 13)))
 			arg++;
 		if (!*arg)
-			break ;
+			break;
 		has_token = 1;
 		start = arg;
 		len = 0;

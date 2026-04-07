@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 18:19:00 by vaktas            #+#    #+#             */
-/*   Updated: 2026/04/06 18:19:01 by vaktas           ###   ########.tr       */
+/*   Created: 2026/03/01 18:19:00 by vaktas            #+#    #+#             */
+/*   Updated: 2026/04/07 18:27:26 by vaktas           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_strcmp(char *s1, char *s2)
 int	strategy_selector(char *arg)
 {
 	if (!arg)
-		return (4);
+		return (5);
 	if (ft_strcmp(arg, "--simple") == 0)
 		return (0);
 	if (ft_strcmp(arg, "--medium") == 0)
@@ -34,7 +34,9 @@ int	strategy_selector(char *arg)
 		return (2);
 	if (ft_strcmp(arg, "--adaptive") == 0)
 		return (3);
-	return (4);
+	if (ft_strcmp(arg, "--count-only") == 0)
+		return (4);
+	return (5);
 }
 
 int	is_sorted(t_stack *a)

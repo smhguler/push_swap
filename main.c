@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 18:15:10 by vaktas            #+#    #+#             */
-/*   Updated: 2026/04/06 18:45:48 by vaktas           ###   ########.tr       */
+/*   Created: 2026/03/01 18:15:10 by vaktas            #+#    #+#             */
+/*   Updated: 2026/04/07 18:27:31 by vaktas           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,12 @@ static int	parse_options(int argc, char **argv, int *mode, int *bench)
 	{
 		if (ft_strcmp(argv[i], "--bench") == 0)
 			*bench = 1;
-		else if (ft_strcmp(argv[i], "--simple") == 0
-			|| ft_strcmp(argv[i], "--medium") == 0
-			|| ft_strcmp(argv[i], "--complex") == 0
+		else if (ft_strcmp(argv[i], "--simple") == 0 || ft_strcmp(argv[i],
+				"--medium") == 0 || ft_strcmp(argv[i], "--complex") == 0
 			|| ft_strcmp(argv[i], "--adaptive") == 0)
 			*mode = strategy_selector(argv[i]);
 		else
-			break ;
+			return (i);
 		i++;
 	}
 	return (i);
@@ -52,8 +51,6 @@ static void	execute_sort(t_stack *a, t_stack *b, t_counts *c, int mode)
 		adaptive_sort(a, b, c);
 }
 
-#include <stdio.h>
-
 int	main(int argc, char **argv)
 {
 	t_main_vars	var;
@@ -67,7 +64,6 @@ int	main(int argc, char **argv)
 	parse(var.a, argv, var.i);
 	assign_index(var.a);
 	var.disorder = compute_disorder(var.a);
-	
 	if (!is_sorted(var.a))
 		execute_sort(var.a, var.b, &var.c, var.mode);
 	print_benchmark(&var.c, var.bench, var.mode, var.disorder);

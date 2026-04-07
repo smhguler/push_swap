@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 18:19:26 by vaktas            #+#    #+#             */
-/*   Updated: 2026/04/06 19:36:50 by vaktas           ###   ########.tr       */
+/*   Created: 2026/03/01 18:19:26 by vaktas            #+#    #+#             */
+/*   Updated: 2026/04/07 18:25:59 by vaktas           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	push_to_b_by_range(t_stack *a, t_stack *b, t_counts *c)
 		range = 35;
 	else
 		range = 15;
-	while (a->size > 3)
+	while (a->size)
 	{
 		if (a->top->index <= i)
 		{
@@ -42,17 +42,15 @@ static void	push_to_b_by_range(t_stack *a, t_stack *b, t_counts *c)
 
 void	simple_sort(t_stack *a, t_stack *b, t_counts *c)
 {
-	if (is_sorted(a))
-		return ;
-	if (a->size <= 3)
-		return (sort_three(a, c));
 	if (a->size <= 5)
-		return (sort_five(a, b, c));
-	push_to_b_by_range(a, b, c);
-	sort_three(a, c);
-	while (b->size)
+		sorting(a, b, c);
+	else
 	{
-		move_max_to_top_b(b, c);
-		pa(a, b, c);
+		push_to_b_by_range(a, b, c);
+		while (b->size)
+		{
+			move_max_to_top_b(b, c);
+			pa(a, b, c);
+		}
 	}
 }

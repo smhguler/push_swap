@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 18:49:06 by vaktas            #+#    #+#             */
-/*   Updated: 2026/04/06 19:44:13 by vaktas           ###   ########.tr       */
+/*   Created: 2026/03/01 18:49:06 by vaktas            #+#    #+#             */
+/*   Updated: 2026/04/07 18:26:53 by vaktas           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,21 @@ void	sort_five(t_stack *a, t_stack *b, t_counts *c)
 	while (a->size > 3)
 	{
 		move_min_to_top_a(a, c);
-		if (is_sorted(a))
-			break ;
 		pb(a, b, c);
 	}
 	sort_three(a, c);
 	while (b->size)
 		pa(a, b, c);
+}
+
+void	sorting(t_stack *a, t_stack *b, t_counts *c)
+{
+	if (is_sorted(a))
+		return ;
+	else if (a->size == 2)
+		return (sa(a, c));
+	else if (a->size == 3)
+		return (sort_three(a, c));
+	else if (a->size <= 5)
+		return (sort_five(a, b, c));
 }
