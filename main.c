@@ -6,7 +6,7 @@
 /*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 18:15:10 by vaktas            #+#    #+#             */
-/*   Updated: 2026/04/07 18:27:31 by vaktas           ###   ########.tr       */
+/*   Updated: 2026/04/08 19:30:13 by vaktas           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,13 @@ int	main(int argc, char **argv)
 	var.bench = 0;
 	init_all(&var.a, &var.b, &var.c);
 	var.i = parse_options(argc, argv, &var.mode, &var.bench);
+	var.c.bench = var.bench;
 	parse(var.a, argv, var.i);
 	assign_index(var.a);
 	var.disorder = compute_disorder(var.a);
 	if (!is_sorted(var.a))
 		execute_sort(var.a, var.b, &var.c, var.mode);
-	print_benchmark(&var.c, var.bench, var.mode, var.disorder);
+	print_benchmark(&var.c, &var.bench, var.mode, var.disorder);
 	free_stack(var.a);
 	free_stack(var.b);
 	return (0);

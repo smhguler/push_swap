@@ -6,7 +6,7 @@
 /*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 18:19:30 by vaktas            #+#    #+#             */
-/*   Updated: 2026/04/07 18:32:32 by vaktas           ###   ########.tr       */
+/*   Updated: 2026/04/08 19:23:10 by vaktas           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@ static const char	*strategy_name(int mode, double disorder)
 	return ("Strategy Not Found");
 }
 
-void	print_benchmark(t_counts *c, int bench_mode, int mode, double disorder)
+void	print_benchmark(t_counts *c, int *bench, int mode, double disorder)
 {
 	int	count_total;
 
-	if (bench_mode)
+	if (*bench)
 	{
 		count_total = c->count_sa + c->count_sb + c->count_ss + c->count_pa
 			+ c->count_pb + c->count_ra + c->count_rb + c->count_rr
 			+ c->count_rra + c->count_rrb + c->count_rrr;
-		ft_printf("[bench] Disorder: %f%%\n", (disorder * 100));
-		ft_printf("[bench] Strategy: %s\n", strategy_name(mode, disorder));
-		ft_printf("[bench] Total Operations: %d\n", count_total);
-		ft_printf("[bench] sa=%d sb=%d ss=%d pa=%d pb=%d\n", c->count_sa,
+		ft_printf("[bench] disorder: %f%%\n", (disorder * 100));
+		ft_printf("[bench] strategy: %s\n", strategy_name(mode, disorder));
+		ft_printf("[bench] total_ops: %d\n", count_total);
+		ft_printf("[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n", c->count_sa,
 			c->count_sb, c->count_ss, c->count_pa, c->count_pb);
-		ft_printf("[bench] ra=%d rb=%d rr=%d rra=%d rrb=%d rrr=%d\n",
+		ft_printf("[bench] ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n",
 			c->count_ra, c->count_rb, c->count_rr, c->count_rra, c->count_rrb,
 			c->count_rrr);
 	}
