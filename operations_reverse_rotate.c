@@ -6,7 +6,7 @@
 /*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 18:20:18 by vaktas            #+#    #+#             */
-/*   Updated: 2026/04/08 17:30:49 by vaktas           ###   ########.tr       */
+/*   Updated: 2026/04/09 12:48:09 by vaktas           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	rra(t_stack *a, t_counts *c)
 	prev->next = NULL;
 	last->next = a->top;
 	a->top = last;
-	if (c->bench != 1)
+	if (c->bench < 1)
 		write(1, "rra\n", 4);
 	c->count_rra++;
 	c->count_total++;
@@ -52,7 +52,7 @@ void	rrb(t_stack *b, t_counts *c)
 	prev->next = NULL;
 	last->next = b->top;
 	b->top = last;
-	if (c->bench != 1)
+	if (c->bench < 1)
 		write(1, "rrb\n", 4);
 	c->count_rrb++;
 	c->count_total++;
@@ -62,7 +62,7 @@ void	rrr(t_stack *a, t_stack *b, t_counts *c)
 {
 	rra(a, c);
 	rrb(b, c);
-	if (c->bench != 1)
+	if (c->bench < 1)
 		write(1, "rrr\n", 4);
 	c->count_rrr++;
 	c->count_total++;

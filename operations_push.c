@@ -6,7 +6,7 @@
 /*   By: vaktas<vaktas@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 18:20:13 by vaktas            #+#    #+#             */
-/*   Updated: 2026/04/08 17:30:20 by vaktas           ###   ########.tr       */
+/*   Updated: 2026/04/09 12:48:05 by vaktas           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	pa(t_stack *a, t_stack *b, t_counts *c)
 	a->top = tmp;
 	a->size++;
 	b->size--;
-	if (c->bench != 1)
+	if (c->bench < 1)
 		write(1, "pa\n", 3);
 	c->count_pa++;
 	c->count_total++;
@@ -42,7 +42,7 @@ void	pb(t_stack *a, t_stack *b, t_counts *c)
 	b->top = tmp;
 	a->size--;
 	b->size++;
-	if (c->bench != 1)
+	if (c->bench < 1)
 		write(1, "pb\n", 3);
 	c->count_pb++;
 	c->count_total++;
